@@ -1,16 +1,17 @@
 package com.example.backenddictionnary.backend_dictionary.models;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "products")
-public class Product {
+@Document(collection = "question")
+public class Test {
     @Id
     private String id;
     private String name;
-    private String description;
-    private double price;
-    // getters and setters
+    private String image;
+    private List<Question> questions;
     public String getId() {
         return id;
     }
@@ -23,16 +24,16 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
-    public String getDescription() {
-        return description;
+    public String getImage() {
+        return image;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImage(String image) {
+        this.image = image;
     }
-    public double getPrice() {
-        return price;
+    public List<Question> getQuestions() {
+        return questions;
     }
-    public void setPrice(double price) {
-        this.price = price;
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backenddictionnary.backend_dictionary.models.Product;
 import com.example.backenddictionnary.backend_dictionary.service.ProductService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @RestController
 @RequestMapping("/products")
@@ -21,7 +22,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/")
+    @GetMapping()
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
