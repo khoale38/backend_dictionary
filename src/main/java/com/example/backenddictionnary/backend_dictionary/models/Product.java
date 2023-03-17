@@ -10,6 +10,8 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    public Product() {
+    }
     // getters and setters
     public String getId() {
         return id;
