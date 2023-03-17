@@ -32,19 +32,33 @@ public class VocabularyService {
         Query query = new Query();
         query.addCriteria(Criteria.where("word").is(Vocabulary.getWord()));
         List<Vocabulary> result = mongoTemplate.find(query, Vocabulary.class);
-        if(!result.isEmpty())
-        return result.get(0);
+        if (!result.isEmpty())
+            return result.get(0);
         else
-        return VocabularyRepository.save(Vocabulary);
+            return VocabularyRepository.save(Vocabulary);
     }
 
-    public Vocabulary updateVocabulary(String id, Vocabulary Vocabulary) {
-        Vocabulary existingVocabulary = VocabularyRepository.findById(id).orElse(null);
-        if (existingVocabulary != null) {
+    public Vocabulary updateVocabulary(String word, Vocabulary Vocabulary) {
+        Vocabulary existingVocabulary;
+        try {
+             existingVocabulary = getVocabularyByWord(word);
 
+        } catch (Exception e) {
+            existingVocabulary = null;
+        }
+        
+        if (existingVocabulary != null) {
+            existingVocabulary
+                    .setWord(Vocabulary.getWord() != null ? Vocabulary.getWord() : existingVocabulary.getWord());
+            existingVocabulary.setHint(Vocabulary.getHint() != null ? Vocabulary.getHint() : existingVocabulary.getHint());
+            existingVocabulary.setMeaning(Vocabulary.getMeaning() != null ? Vocabulary.getMeaning() : existingVocabulary.getMeaning());
+            existingVocabulary.setPhonetics(Vocabulary.getPhonetics() != null ? Vocabulary.getPhonetics() : existingVocabulary.getPhonetics());
+            existingVocabulary.setPronouce(Vocabulary.getPronouce() != null ? Vocabulary.getPronouce() : existingVocabulary.getPronouce());
+            existingVocabulary.setImage(Vocabulary.getImage() != null ? Vocabulary.getImage() : existingVocabulary.getImage());
             return VocabularyRepository.save(existingVocabulary);
         }
         return null;
+
     }
 
     public void deleteVocabulary(String id) {
