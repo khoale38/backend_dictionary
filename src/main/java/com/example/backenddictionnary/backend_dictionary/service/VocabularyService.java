@@ -65,7 +65,8 @@ public class VocabularyService {
 
     public void deleteVocabulary(String word) {
         Vocabulary existingVocabulary = getVocabularyByWord(word);
-
-        VocabularyRepository.deleteById(existingVocabulary.getId());
+        if (existingVocabulary == null) {
+        } else
+            VocabularyRepository.deleteById(existingVocabulary.getId());
     }
 }
