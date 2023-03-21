@@ -8,6 +8,7 @@ public class BackendDictionaryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendDictionaryApplication.class, args);
+		//test ci/cd
 	}
 
 }
