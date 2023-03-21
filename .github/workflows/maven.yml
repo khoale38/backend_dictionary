@@ -24,6 +24,9 @@ jobs:
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
+        repo: https://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@github.com/khoale38/backend_dictionary.git
+        branch: main
+        message: 'Automated commit and push'
         java-version: '17'
         distribution: 'temurin'
         cache: maven
