@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
 
 import com.example.backenddictionnary.backend_dictionary.models.Unit;
 import com.example.backenddictionnary.backend_dictionary.repository.UnitRepository;
 
+@Service
 public class UnitService {
 
     @Autowired
@@ -29,6 +31,21 @@ public class UnitService {
             return null;
         else
             return result.get(0);
+
+    }
+
+    public Unit updateUnit(String unitName,Unit Unit) {
+        Unit existingUnit = getUnitByName(unitName);
+
+        if (existingUnit != null) {
+            existingUnit
+                    .setName(Unit.getName() != null ? Unit.getName() : existingUnit.getName());
+
+            existingUnit
+                    .setImage(Unit.getImage() != null ? Unit.getImage() : existingUnit.getImage());
+            return UnitRepository.save(existingUnit);
+        }
+        return null;
 
     }
 

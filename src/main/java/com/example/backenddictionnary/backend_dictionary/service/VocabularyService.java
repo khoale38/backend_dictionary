@@ -42,7 +42,7 @@ public class VocabularyService {
     }
 
     public Vocabulary updateVocabulary(String word, Vocabulary Vocabulary) {
-        Vocabulary existingVocabulary = getVocabularyByWord(Vocabulary.getWord());
+        Vocabulary existingVocabulary = getVocabularyByWord(word);
 
         if (existingVocabulary != null) {
             existingVocabulary
