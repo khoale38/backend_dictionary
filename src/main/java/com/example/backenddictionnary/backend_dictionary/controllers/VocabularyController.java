@@ -26,13 +26,16 @@ public class VocabularyController {
         return VocabularyService.getAllVocabulary();
     }
 
-    @GetMapping("/byword/{word}")
-    public Vocabulary getVocabularyByWord(@PathVariable String word) {
+    @GetMapping("/byword/{word}/{test}")
+    public Vocabulary getVocabularyByWord(@PathVariable String word, @PathVariable String test) {
+        System.out.println(test);
         return VocabularyService.getVocabularyByWord(word);
+
     }
 
     @PutMapping("/byword/{word}")
     public Vocabulary updateVocabularyByWord(@PathVariable String word, @RequestBody Vocabulary vocabulary) {
+
         return VocabularyService.updateVocabulary(word, vocabulary);
     }
 
