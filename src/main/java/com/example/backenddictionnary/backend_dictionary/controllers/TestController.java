@@ -3,6 +3,7 @@ package com.example.backenddictionnary.backend_dictionary.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +31,18 @@ public class TestController {
         return testService.addTest(User);
     }
 
+     @PostMapping("/{id}")
+    public Test editTest(@PathVariable String id,@RequestBody Test test) {
+        return testService.editTest(test,id);
+    }
+
     @PostMapping("addQuestion/{id}")
     public Test addQuestionToTest(@PathVariable String id,@RequestBody Question test) {
         return testService.addQuestion(test,id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteQuestion(@PathVariable String id) {
+        testService.deleteTest(id);
     }
 }

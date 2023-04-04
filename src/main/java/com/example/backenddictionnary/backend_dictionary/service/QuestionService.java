@@ -17,4 +17,24 @@ public class QuestionService {
     public Question addQuestion(Question question) {
         return questionRepository.save(question);
     }
+
+    public Question editQuestion(Question question, String id) {
+        Question findQuestion = questionRepository.findById(id).orElse(null);
+
+        if (findQuestion != null) {
+            findQuestion
+                    .setTitle(question.getTitle() != null ? question.getTitle() : findQuestion.getTitle());
+
+            findQuestion
+                    .setAnswer(question.getAnswer() != null ? question.getAnswer() : findQuestion.getAnswer());
+            findQuestion
+                    .setDescription(question.getDescription() != null ? question.getDescription() : findQuestion.getDescription());
+            findQuestion
+                    .setPoint(question.getPoint() != 0 ? question.getPoint() : findQuestion.getPoint());
+       
+            return questionRepository.save(findQuestion);
+        }
+        return null;
+
+    }
 }

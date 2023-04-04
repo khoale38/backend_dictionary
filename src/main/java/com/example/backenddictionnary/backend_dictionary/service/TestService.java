@@ -29,6 +29,25 @@ public class TestService {
         return testRepository.save(test);
     }
 
+    public void deleteTest(String id) {
+         testRepository.deleteById(id);
+    }
+
+
+    public Test editTest(Test test,String testId) {
+        Test existingTest= testRepository.findById(testId).orElse(null);
+
+        if (existingTest!= null) {
+            existingTest
+                    .setName(test.getName() != null ? test.getName() : existingTest.getName());
+
+            existingTest
+                    .setImage(test.getImage() != null ? test.getImage() : existingTest.getImage());
+            return testRepository.save(existingTest);
+        }
+        return null;
+    }
+
     public Test addQuestion(Question question, String id) {
         Test findTest = testRepository.findById(id).orElse(null);
         List<Question> oldQuestion = findTest.getQuestions();
@@ -42,4 +61,6 @@ public class TestService {
         return testRepository.save(findTest);
 
     }
+
+    
 }
