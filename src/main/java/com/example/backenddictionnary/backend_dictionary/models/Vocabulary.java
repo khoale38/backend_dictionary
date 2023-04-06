@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Vocabulary {
     @Id
     private String id;
+    private String type;
     private String word;
     private String hint;
     private String phonetics;
@@ -53,6 +54,12 @@ public class Vocabulary {
     }
     public void setMeaning(String meaning) {
         this.meaning = meaning;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

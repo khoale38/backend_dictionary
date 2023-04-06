@@ -26,17 +26,16 @@ public class VocabularyController {
         return VocabularyService.getAllVocabulary();
     }
 
-    @GetMapping("/byword/{word}/{test}")
-    public Vocabulary getVocabularyByWord(@PathVariable String word, @PathVariable String test) {
-        System.out.println(test);
+    @GetMapping("/byword/{word}")
+    public List<Vocabulary> getVocabularyByWord(@PathVariable String word) {
+      
         return VocabularyService.getVocabularyByWord(word);
 
     }
 
-    @PutMapping("/byword/{word}")
-    public Vocabulary updateVocabularyByWord(@PathVariable String word, @RequestBody Vocabulary vocabulary) {
-
-        return VocabularyService.updateVocabulary(word, vocabulary);
+    @PutMapping("/byid/{id}")
+    public Vocabulary updateVocabularyById(@PathVariable String id, @RequestBody Vocabulary vocabulary) {
+        return VocabularyService.updateVocabulary(id, vocabulary);
     }
 
     @PostMapping()
@@ -44,8 +43,8 @@ public class VocabularyController {
         return VocabularyService.addVocabulary(vocabulary);
     }
 
-    @DeleteMapping("/byword/{word}")
-    public void deleteVocabulary(@PathVariable String word) {
-        VocabularyService.deleteVocabulary(word);
+    @DeleteMapping("/byid/{id}")
+    public void deleteVocabulary(@PathVariable String id) {
+        VocabularyService.deleteVocabulary(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.backenddictionnary.backend_dictionary.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,29 +23,32 @@ public class VocabularyService {
         return VocabularyRepository.findAll();
     }
 
-    public Vocabulary getVocabularyByWord(String word) {
+    public List<Vocabulary> getVocabularyByWord(String word) {
         Query query = new Query();
         query.addCriteria(Criteria.where("word").is(word));
         List<Vocabulary> result = mongoTemplate.find(query, Vocabulary.class);
         if (result.size() == 0)
-            return null;
+            return new ArrayList<Vocabulary>();
         else
-            return result.get(0);
+            return result;
 
     }
 
     public Vocabulary addVocabulary(Vocabulary Vocabulary) {
-        Vocabulary findWord = getVocabularyByWord(Vocabulary.getWord());
-        if (findWord != null)
-            return findWord;
+     
+        if (!getVocabularyByWord(Vocabulary.getWord()).isEmpty())
+            return getVocabularyByWord(Vocabulary.getWord()).get(0);
         else
             return VocabularyRepository.save(Vocabulary);
     }
 
-    public Vocabulary updateVocabulary(String word, Vocabulary Vocabulary) {
-        Vocabulary existingVocabulary = getVocabularyByWord(word);
+    public Vocabulary updateVocabulary(String id, Vocabulary Vocabulary) {
+        Vocabulary existingVocabulary = VocabularyRepository.findById(id).orElse(null);
 
         if (existingVocabulary != null) {
+              existingVocabulary
+                    .setType(Vocabulary.getType() != null ? Vocabulary.getType() : existingVocabulary.getType());
+     
             existingVocabulary
                     .setWord(Vocabulary.getWord() != null ? Vocabulary.getWord() : existingVocabulary.getWord());
             existingVocabulary
@@ -63,8 +67,8 @@ public class VocabularyService {
 
     }
 
-    public void deleteVocabulary(String word) {
-        Vocabulary existingVocabulary = getVocabularyByWord(word);
+    public void deleteVocabulary(String id) {
+        Vocabulary existingVocabulary = VocabularyRepository.findById(id).orElse(null);
         if (existingVocabulary == null) {
         } else
             VocabularyRepository.deleteById(existingVocabulary.getId());
