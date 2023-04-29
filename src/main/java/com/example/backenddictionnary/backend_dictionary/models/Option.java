@@ -1,7 +1,8 @@
 package com.example.backenddictionnary.backend_dictionary.models;
 
 import org.springframework.data.annotation.Id;
-
+import org.springframework.data.mongodb.core.mapping.Document;
+@Document(collection = "option")
 public class Option {
     @Id
     private String id;

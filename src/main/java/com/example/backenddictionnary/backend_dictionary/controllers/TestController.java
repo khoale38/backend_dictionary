@@ -41,6 +41,12 @@ public class TestController {
         return testService.addQuestionToTest(testid,questionid);
     }
 
+    @PostMapping("removeQuestion/{testid}/{questionid}")
+    public Test removeQuestionFromTest(@PathVariable String testid,@PathVariable String questionid) {
+        return testService.removeQuestionfromTest(testid,questionid);
+    }
+
+
     @DeleteMapping("/{id}")
     public void deleteTest(@PathVariable String id) {
         testService.deleteTest(id);

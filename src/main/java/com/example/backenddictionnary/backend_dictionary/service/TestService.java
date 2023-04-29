@@ -30,14 +30,13 @@ public class TestService {
     }
 
     public void deleteTest(String id) {
-         testRepository.deleteById(id);
+        testRepository.deleteById(id);
     }
 
+    public Test editTest(Test test, String testId) {
+        Test existingTest = testRepository.findById(testId).orElse(null);
 
-    public Test editTest(Test test,String testId) {
-        Test existingTest= testRepository.findById(testId).orElse(null);
-
-        if (existingTest!= null) {
+        if (existingTest != null) {
             existingTest
                     .setName(test.getName() != null ? test.getName() : existingTest.getName());
 
@@ -51,7 +50,10 @@ public class TestService {
     public Test addQuestionToTest(String testid, String questionid) {
         Test findTest = testRepository.findById(testid).orElse(null);
         List<String> oldQuestion = findTest.getQuestions();
-
+        if (oldQuestion == null) {
+            findTest.setQuestions(Arrays.asList(questionid));
+            return testRepository.save(findTest);
+        }
         if(oldQuestion.contains(questionid))
         return testRepository.save(findTest); 
 
@@ -62,5 +64,13 @@ public class TestService {
 
     }
 
-    
+    public Test removeQuestionfromTest(String testid, String questionid) {
+        Test findTest = testRepository.findById(testid).orElse(null);
+        List<String> oldQuestion = findTest.getQuestions();
+        oldQuestion.remove(questionid);
+        findTest.setQuestions(oldQuestion);
+        return testRepository.save(findTest);
+
+    }
+
 }

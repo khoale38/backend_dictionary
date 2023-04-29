@@ -21,17 +21,28 @@ public class QuestionController {
     private QuestionService questionService;
 
 
+    @GetMapping()
+    public List<Question> getAllQuestion() {
+        return questionService.getAllQuestion();
+    }
+
     @PostMapping()
     public Question addQuestion(@RequestBody Question question) {
         return questionService.addQuestion(question);
     }
 
-
-    //TODO: Currently: this question and test is base on 2 diff schema so edit is not working
     @PutMapping("/{id}")
-    public Question editQuestion(@PathVariable String id,@RequestBody Question question) {
+    public Question editQuestion(@PathVariable String id, @RequestBody Question question) {
         return questionService.editQuestion(question, id);
     }
 
+    @PostMapping("addOption/{questionid}/{optionid}")
+    public Question addOptiontoQuestion(@PathVariable String questionid, @PathVariable String optionid) {
+        return questionService.addOptionToQuestion(questionid, optionid);
+    }
 
+    @PostMapping("removeOption/{questionid}/{optionid}")
+    public Question removeOptionFromQuestion(@PathVariable String questionid, @PathVariable String optionid) {
+        return questionService.removeOptionfromQuestion(questionid, optionid);
+    }
 }

@@ -13,7 +13,7 @@ public class Question {
     private String title;
     private String description;
     private String answer;
-    private List<Option> options;
+    private List<String> options;
     private int point;
     public String getId() {
         return id;
@@ -45,10 +45,10 @@ public class Question {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-    public List<Option> getOptions() {
+    public List<String> getOptions() {
         return options;
     }
-    public void setOptions(List<Option> options) {
+    public void setOptions(List<String> options) {
         this.options = options;
     }
     public int getPoint() {
