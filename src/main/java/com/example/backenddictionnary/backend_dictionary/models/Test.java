@@ -11,7 +11,7 @@ public class Test {
     private String id;
     private String name;
     private String image;
-    private List<Question> questions ;
+    private List<String> questions ;
 
     public String getId() {
         return id;
@@ -37,11 +37,11 @@ public class Test {
         this.image = image;
     }
 
-    public List<Question> getQuestions() {
+    public List<String> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<String> questions) {
         this.questions = questions;
     }
 

@@ -36,13 +36,13 @@ public class TestController {
         return testService.editTest(test,id);
     }
 
-    @PostMapping("addQuestion/{id}")
-    public Test addQuestionToTest(@PathVariable String id,@RequestBody Question test) {
-        return testService.addQuestion(test,id);
+    @PostMapping("addQuestion/{testid}/{questionid}")
+    public Test addQuestionToTest(@PathVariable String testid,@PathVariable String questionid) {
+        return testService.addQuestionToTest(testid,questionid);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteQuestion(@PathVariable String id) {
+    public void deleteTest(@PathVariable String id) {
         testService.deleteTest(id);
     }
 }

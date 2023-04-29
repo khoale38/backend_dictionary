@@ -21,6 +21,12 @@ public class QuestionController {
     private QuestionService questionService;
 
 
+    @PostMapping()
+    public Question addQuestion(@RequestBody Question question) {
+        return questionService.addQuestion(question);
+    }
+
+
     //TODO: Currently: this question and test is base on 2 diff schema so edit is not working
     @PutMapping("/{id}")
     public Question editQuestion(@PathVariable String id,@RequestBody Question question) {

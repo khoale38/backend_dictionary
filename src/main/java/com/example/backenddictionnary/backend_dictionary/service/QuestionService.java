@@ -28,13 +28,19 @@ public class QuestionService {
             findQuestion
                     .setAnswer(question.getAnswer() != null ? question.getAnswer() : findQuestion.getAnswer());
             findQuestion
-                    .setDescription(question.getDescription() != null ? question.getDescription() : findQuestion.getDescription());
+                    .setDescription(question.getDescription() != null ? question.getDescription()
+                            : findQuestion.getDescription());
             findQuestion
                     .setPoint(question.getPoint() != 0 ? question.getPoint() : findQuestion.getPoint());
-       
+
             return questionRepository.save(findQuestion);
         }
         return null;
 
     }
+
+    public void deleteQuestion( String id) {
+        questionRepository.deleteById(id);
+    }
+
 }

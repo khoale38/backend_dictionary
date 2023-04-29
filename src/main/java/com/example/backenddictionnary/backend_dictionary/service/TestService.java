@@ -48,15 +48,15 @@ public class TestService {
         return null;
     }
 
-    public Test addQuestion(Question question, String id) {
-        Test findTest = testRepository.findById(id).orElse(null);
-        List<Question> oldQuestion = findTest.getQuestions();
+    public Test addQuestionToTest(String testid, String questionid) {
+        Test findTest = testRepository.findById(testid).orElse(null);
+        List<String> oldQuestion = findTest.getQuestions();
 
-        if (oldQuestion != null) {
-            oldQuestion.add(questionService.addQuestion(question));
-            findTest.setQuestions(oldQuestion);
-        } else
-            findTest.setQuestions((Arrays.asList(questionService.addQuestion(question))));
+        if(oldQuestion.contains(questionid))
+        return testRepository.save(findTest); 
+
+        oldQuestion.add(questionid);
+        findTest.setQuestions(oldQuestion);
 
         return testRepository.save(findTest);
 
