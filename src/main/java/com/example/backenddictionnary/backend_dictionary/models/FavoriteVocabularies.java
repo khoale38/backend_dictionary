@@ -10,7 +10,7 @@ public class FavoriteVocabularies {
     @Id
     private String id;
     private String userId;
-    private List<String> favoriteVocabularies;
+    private String vocabularyId;
 
     public String getId() {
         return id;
@@ -28,11 +28,13 @@ public class FavoriteVocabularies {
         this.userId = userId;
     }
 
-    public List<String> getFavoriteVocabularies() {
-        return favoriteVocabularies;
+    public String getVocabularyId() {
+        return vocabularyId;
     }
 
-    public void setFavoriteVocabularies(List<String> favoriteVocabularies) {
-        this.favoriteVocabularies = favoriteVocabularies;
+    public void setVocabularyId(String vocabularyId) {
+        this.vocabularyId = vocabularyId;
     }
+
+
 }
