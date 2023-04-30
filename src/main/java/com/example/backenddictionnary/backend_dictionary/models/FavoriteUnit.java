@@ -9,7 +9,7 @@ public class FavoriteUnit {
     @Id
     private String id;
     private String userId;
-    private List<Unit> favoriteUnit;
+    private List<String> favoriteUnit;
     public String getId() {
         return id;
     }
@@ -22,10 +22,10 @@ public class FavoriteUnit {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public List<Unit> getFavoriteUnit() {
+    public List<String> getFavoriteUnit() {
         return favoriteUnit;
     }
-    public void setFavoriteUnit(List<Unit> favoriteUnit) {
+    public void setFavoriteUnit(List<String> favoriteUnit) {
         this.favoriteUnit = favoriteUnit;
     }
 }
