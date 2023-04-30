@@ -34,8 +34,8 @@ public class FavoriteVocabularyController {
         return favoriteVocabularyService.getFavoriteVocabulariesByUser(userid);
     }
 
-    @DeleteMapping("/{userid}")
-    public void deleteFavoriteVocabulary(@PathVariable String userid) {
-         favoriteVocabularyService.deleteFavoriteVocabulary(userid);
+    @DeleteMapping("/{id}")
+    public void deleteFavoriteVocabulary(@PathVariable String id) {
+         favoriteVocabularyService.deleteFavoriteVocabulary(id);
     }
 }

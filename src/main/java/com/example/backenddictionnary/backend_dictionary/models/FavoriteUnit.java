@@ -1,15 +1,15 @@
 package com.example.backenddictionnary.backend_dictionary.models;
 
-import java.util.List;
+
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document(collection = "favoriteUnit")
+@Document(collection = "favoriteunit")
 public class FavoriteUnit {
     @Id
     private String id;
     private String userId;
-    private List<String> favoriteUnit;
+    private String unitId;
     public String getId() {
         return id;
     }
@@ -22,10 +22,10 @@ public class FavoriteUnit {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public List<String> getFavoriteUnit() {
-        return favoriteUnit;
+    public String getUnitId() {
+        return unitId;
     }
-    public void setFavoriteUnit(List<String> favoriteUnit) {
-        this.favoriteUnit = favoriteUnit;
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
     }
 }
