@@ -15,7 +15,7 @@ import com.example.backenddictionnary.backend_dictionary.repository.QuestionRepo
 public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
-
+    @Autowired
     TestService testService;
     @Autowired
     private MongoTemplate mongoTemplate;

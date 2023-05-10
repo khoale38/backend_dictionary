@@ -18,8 +18,7 @@ public class TestService {
     private TestRepository testRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
-    @Autowired
-    private QuestionService questionService;
+ 
 
     public List<Test> getAllTest() {
         return testRepository.findAll();

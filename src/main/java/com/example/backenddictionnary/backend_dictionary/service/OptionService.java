@@ -13,7 +13,7 @@ import com.example.backenddictionnary.backend_dictionary.repository.OptionReposi
 public class OptionService {
     @Autowired
     private OptionRepository optionRepository;
-
+    @Autowired
     QuestionService questionService;
     @Autowired
     private MongoTemplate mongoTemplate;
