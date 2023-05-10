@@ -21,6 +21,10 @@ public class OptionService {
         return optionRepository.findAll();
     }
 
+    public Option getOptionById(String id) {
+        return optionRepository.findById(id).orElse(null);
+    }
+
 
     public Option addOption(Option option) {
         return optionRepository.save(option);

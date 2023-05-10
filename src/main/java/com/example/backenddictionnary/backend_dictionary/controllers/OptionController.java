@@ -20,21 +20,24 @@ public class OptionController {
     @Autowired
     private OptionService optionService;
 
+    @GetMapping("/{id}")
+    public Option getOptionById(@PathVariable String id) {
+        return optionService.getOptionById(id);
+    }
 
-    
     @GetMapping()
     public List<Option> getAllOption() {
         return optionService.getAllOption();
     }
+
     @PostMapping()
     public Option addOption(@RequestBody Option option) {
         return optionService.addOption(option);
     }
 
     @PutMapping("/{id}")
-    public Option editQuestion(@PathVariable String id,@RequestBody Option option) {
+    public Option editQuestion(@PathVariable String id, @RequestBody Option option) {
         return optionService.editOption(option, id);
     }
-
 
 }

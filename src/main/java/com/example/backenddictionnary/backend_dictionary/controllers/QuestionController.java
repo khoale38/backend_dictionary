@@ -25,6 +25,11 @@ public class QuestionController {
     public List<Question> getAllQuestion() {
         return questionService.getAllQuestion();
     }
+    
+    @GetMapping("/{id}")
+    public Question getQuestionById(@PathVariable String id) {
+        return questionService.getQuestionById(id);
+    }
 
     @PostMapping()
     public Question addQuestion(@RequestBody Question question) {

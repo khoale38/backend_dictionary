@@ -22,6 +22,10 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
+    public Question getQuestionById(String Id) {
+        return questionRepository.findById(Id).orElse(null);
+    }
+
     public Question addQuestion(Question question) {
         return questionRepository.save(question);
     }
