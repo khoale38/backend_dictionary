@@ -13,18 +13,22 @@ import com.example.backenddictionnary.backend_dictionary.repository.OptionReposi
 public class OptionService {
     @Autowired
     private OptionRepository optionRepository;
+
+    QuestionService questionService;
     @Autowired
     private MongoTemplate mongoTemplate;
 
-   
     public List<Option> getAllOption() {
         return optionRepository.findAll();
     }
 
-    public Option getOptionById(String id) {
-        return optionRepository.findById(id).orElse(null);
+    public List<Option> getOptionsByQuestionId(String id) {
+        var result = questionService.getQuestionById(id);
+        if (result == null) {
+            return null;
+        }
+        return optionRepository.findAllById(result.getOptions());
     }
-
 
     public Option addOption(Option option) {
         return optionRepository.save(option);

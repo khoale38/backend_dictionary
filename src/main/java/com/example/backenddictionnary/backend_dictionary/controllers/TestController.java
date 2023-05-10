@@ -26,6 +26,12 @@ public class TestController {
         return testService.getAllTest();
     }
 
+    @GetMapping("/{id}")
+    public Test getTestById(@PathVariable String id) {
+        return testService.getTestById(id);
+    }
+
+
     @PostMapping()
     public Test addTest(@RequestBody Test User) {
         return testService.addTest(User);

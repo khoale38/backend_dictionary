@@ -15,6 +15,8 @@ import com.example.backenddictionnary.backend_dictionary.repository.QuestionRepo
 public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
+
+    TestService testService;
     @Autowired
     private MongoTemplate mongoTemplate;
 
@@ -22,8 +24,17 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
-    public Question getQuestionById(String Id) {
-        return questionRepository.findById(Id).orElse(null);
+    public Question getQuestionById(String testId) {
+        return questionRepository.findById(testId).orElse(null);
+    }
+
+
+    public List<Question> getQuestionsByTestId(String testId) {
+        var result = testService.getTestById(testId);
+        if (result == null) {
+            return null;
+        }
+        return questionRepository.findAllById(result.getQuestions());
     }
 
     public Question addQuestion(Question question) {

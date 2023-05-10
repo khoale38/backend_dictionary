@@ -20,9 +20,9 @@ public class OptionController {
     @Autowired
     private OptionService optionService;
 
-    @GetMapping("/{id}")
-    public Option getOptionById(@PathVariable String id) {
-        return optionService.getOptionById(id);
+    @GetMapping("/{questionid}")
+    public List<Option> getOptionsById(@PathVariable String questionid) {
+        return optionService.getOptionsByQuestionId(questionid);
     }
 
     @GetMapping()

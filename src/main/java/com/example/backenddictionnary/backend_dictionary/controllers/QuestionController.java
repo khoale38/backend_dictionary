@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backenddictionnary.backend_dictionary.models.Question;
 import com.example.backenddictionnary.backend_dictionary.service.QuestionService;
+import com.example.backenddictionnary.backend_dictionary.service.TestService;
 
 @RestController
 @RequestMapping("/question")
@@ -20,15 +21,16 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
+    
 
     @GetMapping()
     public List<Question> getAllQuestion() {
         return questionService.getAllQuestion();
     }
     
-    @GetMapping("/{id}")
-    public Question getQuestionById(@PathVariable String id) {
-        return questionService.getQuestionById(id);
+    @GetMapping("/{testid}")
+    public List<Question> getQuestionsById(@PathVariable String testid) {
+        return questionService.getQuestionsByTestId(testid);
     }
 
     @PostMapping()

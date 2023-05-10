@@ -25,6 +25,9 @@ public class TestService {
         return testRepository.findAll();
     }
 
+    public Test getTestById( String id) {
+        return testRepository.findById(id).orElse(null);
+    }
     public Test addTest(Test test) {
         return testRepository.save(test);
     }
