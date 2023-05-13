@@ -25,7 +25,7 @@ public class UnitHasVocabularyController {
     }
 
     @GetMapping("/byid/{id}")
-    public UnitHasVocabulary getUnitHasVocabulariesByUnitId(@PathVariable String id) {
+    public List<UnitHasVocabulary> getUnitHasVocabulariesByUnitId(@PathVariable String id) {
         return unitHasVocabularyService.getUnitHasVocabularyById(id);
     }
 

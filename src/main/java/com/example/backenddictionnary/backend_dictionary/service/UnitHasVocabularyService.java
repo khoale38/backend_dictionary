@@ -27,10 +27,10 @@ public class UnitHasVocabularyService {
         return unitHasVocabularyRepository.save(product);
     }
 
-    public UnitHasVocabulary getUnitHasVocabularyById(String id) {
+    public List<UnitHasVocabulary> getUnitHasVocabularyById(String id) {
         Query query = new Query();
         query.addCriteria(Criteria.where("unitId").is(id));
         List<UnitHasVocabulary> result = mongoTemplate.find(query, UnitHasVocabulary.class);
-        return result.get(0);
+        return result;
     }
 }
