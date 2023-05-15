@@ -33,6 +33,13 @@ public class VocabularyController {
 
     }
 
+    @GetMapping("/byid/{id}")
+    public Vocabulary getVocabularyById(@PathVariable String id) {
+      
+        return VocabularyService.getVocabularyById(id);
+
+    }
+
     @PutMapping("/byid/{id}")
     public Vocabulary updateVocabularyById(@PathVariable String id, @RequestBody Vocabulary vocabulary) {
         return VocabularyService.updateVocabulary(id, vocabulary);

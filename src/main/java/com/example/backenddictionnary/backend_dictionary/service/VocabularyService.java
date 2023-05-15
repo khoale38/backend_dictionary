@@ -23,6 +23,10 @@ public class VocabularyService {
         return VocabularyRepository.findAll();
     }
 
+    public Vocabulary getVocabularyById(String id) {
+        return VocabularyRepository.findById(id).orElse(null);
+    }
+
     public List<Vocabulary> getVocabularyByWord(String word) {
         Query query = new Query();
         query.addCriteria(Criteria.where("word").is(word));
@@ -35,7 +39,7 @@ public class VocabularyService {
     }
 
     public Vocabulary addVocabulary(Vocabulary Vocabulary) {
-     
+
         if (!getVocabularyByWord(Vocabulary.getWord()).isEmpty())
             return getVocabularyByWord(Vocabulary.getWord()).get(0);
         else
@@ -46,9 +50,9 @@ public class VocabularyService {
         Vocabulary existingVocabulary = VocabularyRepository.findById(id).orElse(null);
 
         if (existingVocabulary != null) {
-              existingVocabulary
+            existingVocabulary
                     .setType(Vocabulary.getType() != null ? Vocabulary.getType() : existingVocabulary.getType());
-     
+
             existingVocabulary
                     .setWord(Vocabulary.getWord() != null ? Vocabulary.getWord() : existingVocabulary.getWord());
             existingVocabulary
