@@ -46,4 +46,9 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @GetMapping("/login/{email}/{password}")
+    public User login(@PathVariable String email,@PathVariable String password) {
+        return userService.login(email,password);
+    }
+
 }
