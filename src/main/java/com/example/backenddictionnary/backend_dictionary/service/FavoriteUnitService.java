@@ -39,4 +39,11 @@ public class FavoriteUnitService {
     public void deleteFavoriteUnit(String id) {
         favoriteUnitRepository.deleteById(id);
     }
+
+    public FavoriteUnit getFavoriteUnitById(String unitid) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("unitId").is(unitid));
+       FavoriteUnit result = mongoTemplate.findOne(query, FavoriteUnit.class);
+        return result;
+    }
 }

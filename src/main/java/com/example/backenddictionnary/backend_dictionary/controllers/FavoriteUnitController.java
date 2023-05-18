@@ -25,6 +25,12 @@ public class FavoriteUnitController {
     public List<FavoriteUnit> getAllFavoriteUnit() {
         return favoriteUnitService.getAllFavoriteUnit();
     }
+
+    
+    @GetMapping("/byunitid/{unitid}")
+    public FavoriteUnit getFavoriteVocabulariesById(@PathVariable String unitid) {
+        return favoriteUnitService.getFavoriteUnitById(unitid);
+    }
     @PostMapping()
     public FavoriteUnit addFavoriteUnitToUser(@RequestBody FavoriteUnit unit) {
         return favoriteUnitService.addFavoriteUnitToUser(unit);

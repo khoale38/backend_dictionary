@@ -21,6 +21,15 @@ public class FavoriteVocabularyService {
         return favoriteVocabularyRepository.findAll();
     }
 
+    public FavoriteVocabularies getFavoriteVocabulariesById(String vocaId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("vocabularyId").is(vocaId));
+       FavoriteVocabularies result = mongoTemplate.findOne(query, FavoriteVocabularies.class);
+       
+        return result;
+    }
+
+
     public FavoriteVocabularies addFavoriteVocabulariesToUser(FavoriteVocabularies test) {
         return favoriteVocabularyRepository.save(test);
     }

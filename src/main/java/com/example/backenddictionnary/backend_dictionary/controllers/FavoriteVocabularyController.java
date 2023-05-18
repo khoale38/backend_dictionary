@@ -24,6 +24,11 @@ public class FavoriteVocabularyController {
     public List<FavoriteVocabularies> getAllFavoriteVocabularies() {
         return favoriteVocabularyService.getAllFavoriteVocabularies();
     }
+
+    @GetMapping("/byvocaid/{vocaId}")
+    public FavoriteVocabularies getFavoriteVocabulariesById(@PathVariable String vocaId) {
+        return favoriteVocabularyService.getFavoriteVocabulariesById(vocaId);
+    }
     @PostMapping()
     public FavoriteVocabularies addFavoriteVocabulariesToUser(@RequestBody FavoriteVocabularies option) {
         return favoriteVocabularyService.addFavoriteVocabulariesToUser(option);
