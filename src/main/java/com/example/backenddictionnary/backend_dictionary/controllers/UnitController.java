@@ -31,6 +31,12 @@ public class UnitController {
         return UnitService.getUnitByName(name);
     }
 
+    @GetMapping("/byid/{id}")
+    public Unit getUnitById(@PathVariable String id) {
+        return UnitService.getUnitById(id);
+    }
+
+
     @PutMapping("/byname/{name}")
     public Unit updateUnit(@PathVariable String name,@RequestBody Unit Unit) {
         return UnitService.updateUnit(name,Unit);

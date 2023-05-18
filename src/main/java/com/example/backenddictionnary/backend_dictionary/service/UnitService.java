@@ -34,6 +34,11 @@ public class UnitService {
 
     }
 
+    public Unit getUnitById(String id) {
+        return UnitRepository.findById(id).orElse(null);
+
+    }
+
     public Unit updateUnit(String unitName,Unit Unit) {
         Unit existingUnit = getUnitByName(unitName);
 
