@@ -39,7 +39,7 @@ public class UnitService {
 
     }
 
-    public Unit updateUnit(String unitName,Unit Unit) {
+    public Unit updateUnit(String unitName, Unit Unit) {
         Unit existingUnit = getUnitByName(unitName);
 
         if (existingUnit != null) {
@@ -67,5 +67,15 @@ public class UnitService {
         if (existingUnit == null) {
         } else
             UnitRepository.deleteById(existingUnit.getId());
+    }
+
+    public void deleteUnitById(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("unitid").is(id));
+        Unit result = mongoTemplate.findOne(query, Unit.class);
+        if (result == null)
+            return;
+        UnitRepository.deleteById(result.getId());
+
     }
 }

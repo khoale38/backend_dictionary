@@ -52,4 +52,10 @@ public class UnitController {
         UnitService.deleteUnit(word);
     }
 
+    @DeleteMapping("/byid/{id}")
+    public void deleteUnitById(@PathVariable String id) {
+        UnitService.deleteUnitById(id);
+    }
+
+
 }

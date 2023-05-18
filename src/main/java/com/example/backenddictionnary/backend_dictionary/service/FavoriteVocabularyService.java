@@ -17,6 +17,7 @@ public class FavoriteVocabularyService {
     private FavoriteVocabularyRepository favoriteVocabularyRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
+
     public List<FavoriteVocabularies> getAllFavoriteVocabularies() {
         return favoriteVocabularyRepository.findAll();
     }
@@ -24,16 +25,14 @@ public class FavoriteVocabularyService {
     public FavoriteVocabularies getFavoriteVocabulariesById(String vocaId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("vocabularyId").is(vocaId));
-       FavoriteVocabularies result = mongoTemplate.findOne(query, FavoriteVocabularies.class);
-       
+        FavoriteVocabularies result = mongoTemplate.findOne(query, FavoriteVocabularies.class);
+
         return result;
     }
-
 
     public FavoriteVocabularies addFavoriteVocabulariesToUser(FavoriteVocabularies test) {
         return favoriteVocabularyRepository.save(test);
     }
-
 
     public List<FavoriteVocabularies> getFavoriteVocabulariesByUser(String userId) {
         Query query = new Query();
@@ -42,8 +41,16 @@ public class FavoriteVocabularyService {
         return result;
     }
 
-
     public void deleteFavoriteVocabulary(String id) {
         favoriteVocabularyRepository.deleteById(id);
+    }
+
+    public void deleteFavoriteVocabularyByVocaId(String id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("vocabularyId").is(id));
+        FavoriteVocabularies result = mongoTemplate.findOne(query, FavoriteVocabularies.class);
+        if (result == null)
+            return;
+        favoriteVocabularyRepository.deleteById(result.getId());
     }
 }
