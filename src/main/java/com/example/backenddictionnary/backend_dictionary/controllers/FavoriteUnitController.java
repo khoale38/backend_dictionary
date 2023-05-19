@@ -28,7 +28,7 @@ public class FavoriteUnitController {
 
     
     @GetMapping("/byunitid/{unitid}")
-    public FavoriteUnit getFavoriteVocabulariesById(@PathVariable String unitid) {
+    public FavoriteUnit getFavoriteUnitById(@PathVariable String unitid) {
         return favoriteUnitService.getFavoriteUnitById(unitid);
     }
     @PostMapping()
@@ -44,6 +44,12 @@ public class FavoriteUnitController {
     @DeleteMapping("/{id}")
     public void deleteFavoriteVocabulary(@PathVariable String id) {
         favoriteUnitService.deleteFavoriteUnit(id);
+    }
+
+    
+    @DeleteMapping("/byunitid/{unitid}/{userid}")
+    public void deleteFavoriteUnitByUnitid(@PathVariable String unitid,@PathVariable String userid) {
+        favoriteUnitService.deleteFavoriteUnitByUnitId(unitid,userid);
     }
     
 }

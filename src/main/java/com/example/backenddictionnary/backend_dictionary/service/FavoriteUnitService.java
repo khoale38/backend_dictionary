@@ -18,7 +18,6 @@ public class FavoriteUnitService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    
     public List<FavoriteUnit> getAllFavoriteUnit() {
         return favoriteUnitRepository.findAll();
     }
@@ -27,14 +26,12 @@ public class FavoriteUnitService {
         return favoriteUnitRepository.save(test);
     }
 
-
     public List<FavoriteUnit> getFavoriteUnitByUser(String userId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("userId").is(userId));
         List<FavoriteUnit> result = mongoTemplate.find(query, FavoriteUnit.class);
         return result;
     }
-
 
     public void deleteFavoriteUnit(String id) {
         favoriteUnitRepository.deleteById(id);
@@ -43,7 +40,16 @@ public class FavoriteUnitService {
     public FavoriteUnit getFavoriteUnitById(String unitid) {
         Query query = new Query();
         query.addCriteria(Criteria.where("unitId").is(unitid));
-       FavoriteUnit result = mongoTemplate.findOne(query, FavoriteUnit.class);
+        FavoriteUnit result = mongoTemplate.findOne(query, FavoriteUnit.class);
         return result;
+    }
+
+    public void deleteFavoriteUnitByUnitId(String unitid, String userid) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("unitId").is(unitid).and("userId").is(userid));
+        FavoriteUnit result = mongoTemplate.findOne(query, FavoriteUnit.class);
+        if (result == null)
+            return;
+        favoriteUnitRepository.deleteById(result.getId());
     }
 }

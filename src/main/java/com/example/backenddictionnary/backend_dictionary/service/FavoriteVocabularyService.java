@@ -45,9 +45,9 @@ public class FavoriteVocabularyService {
         favoriteVocabularyRepository.deleteById(id);
     }
 
-    public void deleteFavoriteVocabularyByVocaId(String id) {
+    public void deleteFavoriteVocabularyByVocaId(String vocaid,String userid) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("vocabularyId").is(id));
+        query.addCriteria(Criteria.where("vocabularyId").is(vocaid).and("userId").is(userid));
         FavoriteVocabularies result = mongoTemplate.findOne(query, FavoriteVocabularies.class);
         if (result == null)
             return;
